@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "updated_at": "2025-12-28T19:17:49.635742+01:00",
+  "records_base": "records/",
+  "global": {
+    "stats_path": "indexes/global/stats.json",
+    "pagination_path": "indexes/global/pagination.json",
+    "latest_page_path": "indexes/global/pages/index_1.json",
+    "pages_base": "indexes/global/pages/"
+  },
+  "search": {
+    "title": {
+      "token_map_path": "indexes/search/title/token_map.json",
+      "shards_base": "indexes/search/title/shards/"
+    }
+  }
+}
