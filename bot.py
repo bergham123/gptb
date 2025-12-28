@@ -22,19 +22,30 @@ TZ = ZoneInfo("Africa/Casablanca")
 TELEGRAM_TOKEN   = os.getenv("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
+# Repo info (used to build raw URLs for media)
 GITHUB_REPO_SLUG   = "bergham123/anime-news-bot"
 GITHUB_REPO_BRANCH = "main"
 
+# Your GitHub Pages site (optional)
 SITE_BASE_URL = "https://bergham123.github.io/anime-news-bot"
 ARTICLE_PAGE  = "article.html"
 
+# =====================
+# SOURCES
+# =====================
+# store=true  -> write to records + indexes + search + dedup maps
+# store=false -> DO NOT write anything to json (only telegram), but still uses checkpoints to avoid re-sending.
 SOURCES = [
-    {"key": "crunchyroll", "rss": "https://cr-news-api-service.prd.crunchyrollsvc.com/v1/ar-SA/rss"},
-    {"key": "youtube", "rss": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1WGYjPeHHc_3nRXqbW3OcQ"},
-    # {"key": "site3", "rss": "https://example.com/rss"},
-    # {"key": "site4", "rss": "https://example.com/rss"},
+    {"key": "crunchyroll", "rss": "https://cr-news-api-service.prd.crunchyrollsvc.com/v1/ar-SA/rss", "store": True},
+    {"key": "youtube", "rss": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1WGYjPeHHc_3nRXqbW3OcQ", "store": False},
+    # Add your 2 other sites:
+    # {"key": "site3", "rss": "https://example.com/rss", "store": True},
+    # {"key": "site4", "rss": "https://example.com/rss", "store": True},
 ]
 
+# =====================
+# PATHS
+# =====================
 RECORDS_DIR = Path("records")
 INDEXES_DIR = Path("indexes")
 STATE_DIR   = Path("state")
@@ -113,6 +124,9 @@ def slugify(text: str, max_len: int = 70) -> str:
     text = re.sub(r"-{2,}", "-", text).strip("-")
     return text[:max_len] if text else "image"
 
+# ====================
+# Extractors
+# ====================
 def extract_full_text(entry) -> str:
     try:
         if hasattr(entry, "content") and entry.content and isinstance(entry.content, list):
@@ -167,6 +181,9 @@ def entry_published_day(entry) -> str:
             return str(v)[:10]
     return now_local().date().isoformat()
 
+# ====================
+# Dedup (stored sources only)
+# ====================
 def compute_story_fp(title: str, desc: str, pub_day: str) -> str:
     t = normalize_text(title)
     d = normalize_text(desc)[:160]
@@ -202,6 +219,9 @@ def dedup_put_url(url_hash: str, rid: str):
     mp[url_hash] = rid
     save_shard_map(DEDUP_URL_DIR, sh, mp)
 
+# ====================
+# Image processing for stored sources only
+# ====================
 def fetch_image(url: str) -> Image.Image | None:
     try:
         r = requests.get(url, timeout=HTTP_TIMEOUT)
@@ -210,7 +230,7 @@ def fetch_image(url: str) -> Image.Image | None:
         im = ImageOps.exif_transpose(im)
         return im.convert("RGBA")
     except Exception as e:
-        logging.error(f"fetch_image failed: {e}")
+        logging.warning(f"fetch_image failed: {e}")
         return None
 
 def downscale_to_fit(im: Image.Image) -> Image.Image:
@@ -239,6 +259,9 @@ def save_webp(stable_key: str, title: str, webp_bytes: BytesIO, dt: datetime) ->
         p.write_bytes(webp_bytes.read())
     return build_raw_github_url(p.as_posix())
 
+# ====================
+# Records (stored sources only)
+# ====================
 def load_record(rid: str, dt_guess: datetime) -> dict | None:
     p = record_path_for(dt_guess, rid)
     if p.exists():
@@ -266,6 +289,9 @@ def merge_source(rec: dict, source_key: str, source_url: str) -> bool:
     rec["updated_at"] = iso_now()
     return True
 
+# ====================
+# Global indexes (stored sources only)
+# ====================
 def load_pagination() -> dict:
     return read_json(GLOBAL_PAGINATION, default={"total_articles": 0, "files": []})
 
@@ -314,6 +340,9 @@ def append_global_cards(cards: list):
     save_pagination(pag)
     save_stats(pag["total_articles"], len(cards))
 
+# ====================
+# Search (stored sources only)
+# ====================
 def load_token_map() -> dict:
     return read_json(SEARCH_TOKEN_MAP, default={})
 
@@ -359,6 +388,9 @@ def update_token_map(rec: dict):
             mp[tok] = sorted(set(arr))
     save_token_map(mp)
 
+# ====================
+# Manifest (updated LAST)
+# ====================
 def save_manifest():
     pag = load_pagination()
     latest = None
@@ -383,6 +415,9 @@ def save_manifest():
     }
     atomic_write_json(MANIFEST_PATH, manifest)
 
+# ====================
+# State checkpoints (all sources)
+# ====================
 def load_checkpoints() -> dict:
     return read_json(CHECKPOINTS_PATH, default={})
 
@@ -399,24 +434,57 @@ def source_marker(entry) -> str:
     title = getattr(entry, "title", "") or ""
     return sha1_hex(title)[:16]
 
-async def send_telegram(bot: telegram.Bot, rec: dict):
-    rid = rec.get("id") or ""
-    url = f"{SITE_BASE_URL}/{ARTICLE_PAGE}?id={quote(rid)}"
-    caption = f"{rec.get('title') or ''}\n\n🔗 اقرأ المزيد:\n{url}"
-    img = rec.get("image")
+# ====================
+# Telegram send (FIXED + better logging)
+# ====================
+async def send_telegram_message(bot: telegram.Bot, title: str, description: str, image_url: str | None, link_url: str | None = None):
+    if not TELEGRAM_CHAT_ID:
+        logging.error("TELEGRAM_CHAT_ID is missing.")
+        return
+
+    text_parts = [title.strip() if title else ""]
+    if description:
+        text_parts.append(description.strip())
+    if link_url:
+        text_parts.append(f"🔗 {link_url}")
+    caption = "\n\n".join([p for p in text_parts if p])
+
     try:
-        if img:
-            await bot.send_photo(chat_id=TELEGRAM_CHAT_ID, photo=img, caption=caption)
-        else:
-            await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=caption)
+        if image_url:
+            # Telegram can accept an https URL; if it fails, fallback to text
+            try:
+                await bot.send_photo(chat_id=TELEGRAM_CHAT_ID, photo=image_url, caption=caption[:1024])
+                return
+            except Exception as e:
+                logging.warning(f"send_photo failed, fallback to text. error={e}")
+
+        await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=caption[:4096])
     except Exception as e:
         logging.error(f"Telegram send failed: {e}")
 
+async def send_record_to_telegram(bot: telegram.Bot, rec: dict):
+    rid = rec.get("id") or ""
+    article_url = f"{SITE_BASE_URL}/{ARTICLE_PAGE}?id={quote(rid)}" if SITE_BASE_URL else None
+    await send_telegram_message(
+        bot=bot,
+        title=rec.get("title") or "",
+        description=(rec.get("description_full") or "")[:700],
+        image_url=rec.get("image"),
+        link_url=article_url,
+    )
+
+# ====================
+# Base folders
+# ====================
 def ensure_base_folders():
     for p in [RECORDS_DIR, INDEXES_DIR, STATE_DIR, MEDIA_DIR, GLOBAL_PAGES_DIR, SEARCH_SHARDS_DIR, DEDUP_STORY_DIR, DEDUP_URL_DIR]:
         ensure_dir(p)
 
-def process_entry(source_key: str, entry) -> tuple[bool, str | None]:
+# ====================
+# Main processing
+# ====================
+def process_entry_store(source_key: str, entry) -> tuple[bool, str | None]:
+    """Store + index + search + dedup + (optionally) telegram."""
     title = getattr(entry, "title", "") or ""
     desc  = extract_full_text(entry)
     img0  = extract_image(entry)
@@ -456,6 +524,7 @@ def process_entry(source_key: str, entry) -> tuple[bool, str | None]:
         "sources": [{"source": source_key, "url": url or "", "added_at": created_iso}],
     }
 
+    # Only stored sources save webp to repo
     if img0:
         webp = make_webp(img0)
         if webp:
@@ -475,38 +544,71 @@ def process_entry(source_key: str, entry) -> tuple[bool, str | None]:
 
     return True, rid
 
+async def process_entry_telegram_only(source_key: str, entry, bot: telegram.Bot) -> bool:
+    """Telegram-only: do NOT store anything in json/indexes."""
+    title = getattr(entry, "title", "") or ""
+    desc  = extract_full_text(entry)
+    img   = extract_image(entry)
+    url   = entry_link(entry)
+
+    await send_telegram_message(
+        bot=bot,
+        title=title,
+        description=desc[:700],
+        image_url=img,
+        link_url=url or None,
+    )
+    return True
+
 async def run():
     ensure_base_folders()
     cp = load_checkpoints()
-    bot = telegram.Bot(token=TELEGRAM_TOKEN) if TELEGRAM_TOKEN and TELEGRAM_CHAT_ID else None
 
-    new_count = 0
+    if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
+        logging.warning("Telegram secrets missing. Set TELEGRAM_TOKEN and TELEGRAM_CHAT_ID in repo secrets.")
+    bot = telegram.Bot(token=TELEGRAM_TOKEN) if TELEGRAM_TOKEN else None
+
+    stored_new = 0
     for src in SOURCES:
         key = src["key"]
-        feed = feedparser.parse(src["rss"])
+        store = bool(src.get("store", True))
+        rss = src["rss"]
+
+        feed = feedparser.parse(rss)
         if not feed.entries:
+            logging.info(f"{key}: no entries")
             continue
 
         latest = feed.entries[0]
         marker = source_marker(latest)
         last_marker = (cp.get(key) or {}).get("last_marker")
+
         if last_marker and marker == last_marker:
             logging.info(f"{key}: skip (no new)")
             continue
 
-        created, rid = process_entry(key, latest)
+        if store:
+            created, rid = process_entry_store(key, latest)
+            if created:
+                stored_new += 1
+                if bot:
+                    rec = load_record(rid, now_local()) if rid else None
+                    if rec:
+                        await send_record_to_telegram(bot, rec)
+        else:
+            # Telegram-only (youtube): send even if not storing
+            if bot:
+                await process_entry_telegram_only(key, latest, bot)
+            else:
+                logging.warning(f"{key}: telegram-only source but TELEGRAM_TOKEN missing, cannot send.")
+
         cp[key] = {"last_marker": marker, "last_seen_at": iso_now()}
 
-        if created:
-            new_count += 1
-            if bot and rid:
-                rec = load_record(rid, now_local())
-                if rec:
-                    await send_telegram(bot, rec)
-
     save_checkpoints(cp)
+
+    # Only update manifest if we have global index (stored sources). Safe to call always.
     save_manifest()  # LAST
-    logging.info(f"Done. New: {new_count}")
+    logging.info(f"Done. Stored new records: {stored_new}")
 
 if __name__ == "__main__":
     asyncio.run(run())
