@@ -2,17 +2,20 @@
   "ال": [
     "46.json",
     "4e.json",
+    "ab.json",
     "b6.json",
     "eb.json"
   ],
   "من": [
     "4e.json",
+    "ab.json",
     "b6.json",
     "eb.json"
   ],
   "أن": [
     "06.json",
     "4e.json",
+    "ab.json",
     "e3.json",
     "eb.json"
   ],
@@ -39,7 +42,8 @@
     "46.json"
   ],
   "ka": [
-    "46.json"
+    "46.json",
+    "ab.json"
   ],
   "sa": [
     "46.json"
@@ -87,5 +91,8 @@
   ],
   "حص": [
     "c0.json"
+  ],
+  "go": [
+    "ab.json"
   ]
 }
