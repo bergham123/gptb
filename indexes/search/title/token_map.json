@@ -13,6 +13,7 @@
   "أن": [
     "06.json",
     "4e.json",
+    "e3.json",
     "eb.json"
   ],
   "no": [
@@ -47,7 +48,8 @@
     "06.json"
   ],
   "th": [
-    "06.json"
+    "06.json",
+    "e3.json"
   ],
   "bl": [
     "06.json"
@@ -56,6 +58,16 @@
     "06.json"
   ],
   "mo": [
-    "06.json"
+    "06.json",
+    "e3.json"
+  ],
+  "ch": [
+    "e3.json"
+  ],
+  "في": [
+    "e3.json"
+  ],
+  "ma": [
+    "e3.json"
   ]
 }
