@@ -15,6 +15,7 @@
   "أن": [
     "06.json",
     "4e.json",
+    "a2.json",
     "ab.json",
     "e3.json",
     "eb.json"
@@ -32,7 +33,8 @@
     "4e.json"
   ],
   "عن": [
-    "4e.json"
+    "4e.json",
+    "a2.json"
   ],
   "لأ": [
     "46.json",
@@ -94,5 +96,17 @@
   ],
   "go": [
     "ab.json"
+  ],
+  "تق": [
+    "a2.json"
+  ],
+  "se": [
+    "a2.json"
+  ],
+  "be": [
+    "a2.json"
+  ],
+  "to": [
+    "a2.json"
   ]
 }
