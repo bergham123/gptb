@@ -4,6 +4,7 @@
     "4e.json",
     "ab.json",
     "b6.json",
+    "df.json",
     "eb.json"
   ],
   "من": [
@@ -83,7 +84,8 @@
     "c0.json"
   ],
   "سل": [
-    "c0.json"
+    "c0.json",
+    "df.json"
   ],
   "hi": [
     "c0.json"
@@ -114,5 +116,11 @@
   ],
   "af": [
     "a2.json"
+  ],
+  "lo": [
+    "df.json"
+  ],
+  "my": [
+    "df.json"
   ]
 }
