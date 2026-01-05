@@ -1,5 +1,6 @@
 {
   "ال": [
+    "2f.json",
     "46.json",
     "4e.json",
     "ab.json",
@@ -8,6 +9,7 @@
     "eb.json"
   ],
   "من": [
+    "2f.json",
     "4e.json",
     "ab.json",
     "b6.json",
@@ -15,6 +17,7 @@
   ],
   "أن": [
     "06.json",
+    "2f.json",
     "4e.json",
     "a2.json",
     "ab.json",
@@ -56,6 +59,7 @@
   ],
   "th": [
     "06.json",
+    "2f.json",
     "e3.json"
   ],
   "bl": [
@@ -122,5 +126,8 @@
   ],
   "my": [
     "df.json"
+  ],
+  "an": [
+    "2f.json"
   ]
 }
