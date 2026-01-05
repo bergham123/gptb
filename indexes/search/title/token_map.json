@@ -6,7 +6,8 @@
     "ab.json",
     "b6.json",
     "df.json",
-    "eb.json"
+    "eb.json",
+    "fd.json"
   ],
   "من": [
     "2f.json",
@@ -22,7 +23,8 @@
     "a2.json",
     "ab.json",
     "e3.json",
-    "eb.json"
+    "eb.json",
+    "fd.json"
   ],
   "no": [
     "eb.json"
@@ -38,7 +40,8 @@
   ],
   "عن": [
     "4e.json",
-    "a2.json"
+    "a2.json",
+    "fd.json"
   ],
   "لأ": [
     "46.json",
@@ -76,7 +79,8 @@
     "e3.json"
   ],
   "في": [
-    "e3.json"
+    "e3.json",
+    "fd.json"
   ],
   "ma": [
     "e3.json"
@@ -129,5 +133,11 @@
   ],
   "an": [
     "2f.json"
+  ],
+  "wa": [
+    "fd.json"
+  ],
+  "wi": [
+    "fd.json"
   ]
 }
