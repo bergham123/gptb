@@ -6,6 +6,7 @@
     "ab.json",
     "b6.json",
     "df.json",
+    "e9.json",
     "eb.json",
     "fd.json"
   ],
@@ -14,6 +15,7 @@
     "4e.json",
     "ab.json",
     "b6.json",
+    "e9.json",
     "eb.json"
   ],
   "أن": [
@@ -93,7 +95,8 @@
   ],
   "سل": [
     "c0.json",
-    "df.json"
+    "df.json",
+    "e9.json"
   ],
   "hi": [
     "c0.json"
@@ -139,5 +142,11 @@
   ],
   "wi": [
     "fd.json"
+  ],
+  "of": [
+    "e9.json"
+  ],
+  "fi": [
+    "e9.json"
   ]
 }
