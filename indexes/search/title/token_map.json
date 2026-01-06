@@ -5,6 +5,7 @@
     "46.json",
     "4e.json",
     "ab.json",
+    "b2.json",
     "b3.json",
     "b6.json",
     "df.json",
@@ -17,6 +18,7 @@
     "2f.json",
     "4e.json",
     "ab.json",
+    "b2.json",
     "b3.json",
     "b6.json",
     "e9.json",
@@ -48,6 +50,7 @@
   "عن": [
     "4e.json",
     "a2.json",
+    "b2.json",
     "fd.json"
   ],
   "لأ": [
@@ -117,7 +120,8 @@
     "ab.json"
   ],
   "تق": [
-    "a2.json"
+    "a2.json",
+    "b2.json"
   ],
   "se": [
     "a2.json"
@@ -160,5 +164,8 @@
   ],
   "in": [
     "b3.json"
+  ],
+  "ju": [
+    "b2.json"
   ]
 }
