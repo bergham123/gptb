@@ -1,6 +1,7 @@
 {
   "ال": [
     "01.json",
+    "06.json",
     "2f.json",
     "46.json",
     "4e.json",
@@ -119,6 +120,7 @@
     "c0.json"
   ],
   "سل": [
+    "06.json",
     "c0.json",
     "df.json",
     "e9.json"
@@ -202,5 +204,8 @@
   ],
   "bo": [
     "ba.json"
+  ],
+  "pe": [
+    "06.json"
   ]
 }
