@@ -8,6 +8,7 @@
     "b2.json",
     "b3.json",
     "b6.json",
+    "ba.json",
     "df.json",
     "e9.json",
     "eb.json",
@@ -80,6 +81,7 @@
     "2f.json",
     "4c.json",
     "70.json",
+    "ba.json",
     "e3.json"
   ],
   "bl": [
@@ -168,6 +170,7 @@
     "fd.json"
   ],
   "of": [
+    "ba.json",
     "e9.json"
   ],
   "fi": [
@@ -193,5 +196,11 @@
   ],
   "يك": [
     "47.json"
+  ],
+  "ca": [
+    "ba.json"
+  ],
+  "bo": [
+    "ba.json"
   ]
 }

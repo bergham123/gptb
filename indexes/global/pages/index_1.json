@@ -218,5 +218,16 @@
     "created_at": "2026-01-07T14:41:45.768389+01:00",
     "updated_at": "2026-01-07T14:41:45.992098+01:00",
     "record_path": "records/2026/01/703290683b7c.json"
+  },
+  {
+    "id": "ba379ed92586",
+    "title": "الأنمي المتلفز The Case Book of Arne يكشف عن ملصق رئيسي ومقطع دعائي جديد",
+    "image": "https://raw.githubusercontent.com/bergham123/anime-news-bot/main/media/2026/01/الأنمي-المتلفز-the-case-book-of-arne-يكشف-عن-ملصق-رئيسي-ومقطع-دعائي-جد-ba379ed92586.webp",
+    "categories": [
+      "آخر أخبار الأنمي"
+    ],
+    "created_at": "2026-01-07T15:56:04.933178+01:00",
+    "updated_at": "2026-01-07T15:56:05.174892+01:00",
+    "record_path": "records/2026/01/ba379ed92586.json"
   }
 ]
