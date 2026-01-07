@@ -11,6 +11,7 @@
     "b6.json",
     "ba.json",
     "df.json",
+    "e0.json",
     "e9.json",
     "eb.json",
     "fd.json"
@@ -23,6 +24,7 @@
     "b2.json",
     "b3.json",
     "b6.json",
+    "e0.json",
     "e9.json",
     "eb.json"
   ],
@@ -36,6 +38,7 @@
     "a2.json",
     "ab.json",
     "b3.json",
+    "e0.json",
     "e3.json",
     "eb.json",
     "fd.json"
@@ -207,5 +210,8 @@
   ],
   "pe": [
     "06.json"
+  ],
+  "he": [
+    "e0.json"
   ]
 }
