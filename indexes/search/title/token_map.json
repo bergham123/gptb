@@ -30,6 +30,7 @@
     "47.json",
     "4c.json",
     "4e.json",
+    "70.json",
     "a2.json",
     "ab.json",
     "b3.json",
@@ -78,6 +79,7 @@
     "06.json",
     "2f.json",
     "4c.json",
+    "70.json",
     "e3.json"
   ],
   "bl": [
@@ -89,19 +91,23 @@
   "mo": [
     "06.json",
     "4c.json",
+    "70.json",
     "e3.json"
   ],
   "ch": [
     "4c.json",
+    "70.json",
     "e3.json"
   ],
   "في": [
     "47.json",
+    "70.json",
     "e3.json",
     "fd.json"
   ],
   "ma": [
     "4c.json",
+    "70.json",
     "e3.json"
   ],
   "pa": [
