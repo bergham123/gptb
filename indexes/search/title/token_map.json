@@ -27,6 +27,7 @@
   "أن": [
     "06.json",
     "2f.json",
+    "4c.json",
     "4e.json",
     "a2.json",
     "ab.json",
@@ -74,6 +75,7 @@
   "th": [
     "06.json",
     "2f.json",
+    "4c.json",
     "e3.json"
   ],
   "bl": [
@@ -84,9 +86,11 @@
   ],
   "mo": [
     "06.json",
+    "4c.json",
     "e3.json"
   ],
   "ch": [
+    "4c.json",
     "e3.json"
   ],
   "في": [
@@ -94,6 +98,7 @@
     "fd.json"
   ],
   "ma": [
+    "4c.json",
     "e3.json"
   ],
   "pa": [
@@ -167,5 +172,8 @@
   ],
   "ju": [
     "b2.json"
+  ],
+  "re": [
+    "4c.json"
   ]
 }
