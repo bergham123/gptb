@@ -5,6 +5,7 @@
     "2f.json",
     "46.json",
     "4e.json",
+    "51.json",
     "ab.json",
     "b2.json",
     "b3.json",
@@ -20,6 +21,7 @@
     "01.json",
     "2f.json",
     "4e.json",
+    "51.json",
     "ab.json",
     "b2.json",
     "b3.json",
@@ -213,5 +215,14 @@
   ],
   "he": [
     "e0.json"
+  ],
+  "إل": [
+    "51.json"
+  ],
+  "مو": [
+    "51.json"
+  ],
+  "بث": [
+    "51.json"
   ]
 }
