@@ -37,6 +37,7 @@
     "4c.json",
     "4e.json",
     "70.json",
+    "81.json",
     "a2.json",
     "ab.json",
     "b3.json",
@@ -153,6 +154,7 @@
     "a2.json"
   ],
   "to": [
+    "81.json",
     "a2.json"
   ],
   "le": [
@@ -224,5 +226,17 @@
   ],
   "بث": [
     "51.json"
+  ],
+  "pl": [
+    "81.json"
+  ],
+  "sh": [
+    "81.json"
+  ],
+  "ga": [
+    "81.json"
+  ],
+  "de": [
+    "81.json"
   ]
 }
