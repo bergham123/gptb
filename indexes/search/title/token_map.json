@@ -3,6 +3,7 @@
     "01.json",
     "06.json",
     "2f.json",
+    "38.json",
     "46.json",
     "4e.json",
     "51.json",
@@ -23,6 +24,7 @@
   "من": [
     "01.json",
     "2f.json",
+    "38.json",
     "4e.json",
     "51.json",
     "61.json",
@@ -68,6 +70,7 @@
   ],
   "عن": [
     "34.json",
+    "38.json",
     "4e.json",
     "a2.json",
     "b2.json",
@@ -156,6 +159,7 @@
     "ab.json"
   ],
   "تق": [
+    "38.json",
     "a2.json",
     "b2.json"
   ],
@@ -231,6 +235,7 @@
     "06.json"
   ],
   "he": [
+    "38.json",
     "e0.json"
   ],
   "إل": [
