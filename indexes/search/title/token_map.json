@@ -17,6 +17,7 @@
     "e0.json",
     "e9.json",
     "eb.json",
+    "ef.json",
     "fd.json"
   ],
   "من": [
@@ -99,7 +100,8 @@
     "4c.json",
     "70.json",
     "ba.json",
-    "e3.json"
+    "e3.json",
+    "ef.json"
   ],
   "bl": [
     "06.json"
@@ -260,5 +262,11 @@
   ],
   "جا": [
     "34.json"
+  ],
+  "di": [
+    "ef.json"
+  ],
+  "dr": [
+    "ef.json"
   ]
 }
