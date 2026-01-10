@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-01-10T13:46:44.548065+01:00",
+  "updated_at": "2026-01-10T14:31:16.669897+01:00",
   "records_base": "records/",
   "global": {
     "stats_path": "indexes/global/stats.json",
