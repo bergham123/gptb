@@ -15,6 +15,7 @@
     "b3.json",
     "b6.json",
     "ba.json",
+    "bd.json",
     "df.json",
     "e0.json",
     "e9.json",
@@ -35,6 +36,7 @@
     "b2.json",
     "b3.json",
     "b6.json",
+    "bd.json",
     "e0.json",
     "e9.json",
     "eb.json"
@@ -53,6 +55,7 @@
     "a2.json",
     "ab.json",
     "b3.json",
+    "bd.json",
     "e0.json",
     "e3.json",
     "eb.json",
@@ -84,7 +87,8 @@
   ],
   "شا": [
     "01.json",
-    "46.json"
+    "46.json",
+    "bd.json"
   ],
   "ka": [
     "46.json",
@@ -278,5 +282,8 @@
   ],
   "dr": [
     "ef.json"
+  ],
+  "yo": [
+    "bd.json"
   ]
 }
